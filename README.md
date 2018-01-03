@@ -1,5 +1,5 @@
 ## Giới thiệu:
-###### Botchat sử dụng thư viện fbchat được viết bằng Python! Tương tác trực tiếp với facebook không thông qua api mà sử dụng email và mật khẩu của tài khoản chạy browser ảo được thư viện tạo ra.
+###### Botchat sử dụng thư viện fbchat được viết bằng Python! Tương tác với facebook không thông qua api mà sử dụng email và mật khẩu facebook chạy trên browser ảo.
 
 ## Yêu cầu:
 ###### Python >= 2.7
