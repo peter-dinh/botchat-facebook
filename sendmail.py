@@ -17,8 +17,8 @@ class SendMail:
         msg['To'] = to_address
         msg['Subject'] = "%s" % Header(subject, 'utf-8')
         
-        text_message1 = u'"{}" đã gửi cho bạn lời nhắn:\n'.format(name_facebook)
-        text_message2 = u'"{}"\n'.format(message)
+        text_message1 = u'"{}" đã gửi cho bạn lời nhắn:\n\n'.format(name_facebook)
+        text_message2 = u'<b>"{}"</b>\n'.format(message)
         text_message3 = 'Vào lúc: {}\n'.format(time.strftime("%a, %d %b %Y %H:%M:%S"))
         text_message4 = u"""
         Thân mến\n
@@ -37,6 +37,6 @@ class SendMail:
         s.sendmail(from_address, to_address, text)
         s.quit()
 
-if __name__ == "__main__":
-    x = SendMail
-    x.Send('Your mail', 'Password', 'To address', 'Name Facebook', 'Message')
+# if __name__ == "__main__":
+#     x = SendMail
+#     x.Send('Your mail', 'Password', 'To address', 'Name Facebook', 'Message')

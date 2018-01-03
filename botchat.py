@@ -2,6 +2,7 @@
 
 from fbchat import log, Client
 from fbchat.models import *
+from sendmail import SendMail
 import getpass
 
 # Subclass fbchat.Client and override required methods
@@ -9,6 +10,9 @@ class Run_App(Client):
 
     action = 1
     def onMessage(self, mid, author_id, message, message_object, thread_id, thread_type, **kwargs):
+        """
+            Dung de bat su kien khi co tin nhan moi!
+        """
         self.markAsDelivered(author_id, thread_id)
         self.markAsRead(author_id)
 
@@ -70,7 +74,21 @@ class Run_App(Client):
                 relay = Message(text = message_relay)
                 self.send(relay, thread_id=thread_id, thread_type=thread_type)
 
-                message_relay = 'Bot: Thư đã được gửi đến Peter! Bạn vui lòng chờ đợi sau ít phút'
+                message_relay = 'Bot: Đang tiến hành gửi mail!'
+                relay = Message(text = message_relay)
+                self.send(relay, thread_id=thread_id, thread_type=thread_type)
+                # Gửi mail
+                send_mail = SendMail
+                email_from = 'Gmail botchat gửi tin nhắn'
+                password = 'Password gmail do google cấp'
+                email_to = 'Gmail nhận tin nhắn của botchat'
+                send_mail.Send(email_from, password, email_to, user.name, message)
+
+                message_relay = """
+                Bot: Thư đã được gửi đến Peter.
+                Đừng đi đâu hết!
+                Peter sẽ trả lời bạn ngay ~~
+                """
                 relay = Message(text = message_relay)
                 self.send(relay, thread_id=thread_id, thread_type=thread_type)
 
