@@ -12,9 +12,10 @@
 ###### `password = 'Password gmail do google cấp'`
 ###### `email_to = 'Gmail nhận tin nhắn của botchat'`
 ##### Chạy chương trình:
-`python botchat.py`
-##### hoặc
+###### Trên Linux:
 `python3 botchat.py`
+###### Trên Windown:
+`py botchat.py`
 ## Tham khảo:
 ###### [Resource](https://github.com/carpedm20/fbchat/)
 ###### [Guide](https://fbchat.readthedocs.io/en/master/)
