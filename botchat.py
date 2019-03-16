@@ -13,6 +13,9 @@ class Run_App(Client):
         """
             Dung de bat su kien khi co tin nhan moi!
         """
+
+        print(thread_id)
+
         self.markAsDelivered(author_id, thread_id)
         self.markAsRead(author_id)
 
@@ -22,12 +25,12 @@ class Run_App(Client):
         if author_id == self.uid:
             if message_object.text == 'Stop!':
                 self.action = 0
-                message_relay = 'Đã tiếp nhận yêu cầu!!'
+                message_relay = 'Bot: Đã tiếp nhận yêu cầu!!'
                 relay = Message(text = message_relay)
                 self.send(relay, thread_id=thread_id, thread_type=thread_type)
             if message_object.text == 'Start!':
                 self.action = 1
-                message_relay = 'Đã tiếp nhận yêu cầu!!'
+                message_relay = 'Bot: Đã tiếp nhận yêu cầu!!'
                 relay = Message(text = message_relay)
                 self.send(relay, thread_id=thread_id, thread_type=thread_type)
 
@@ -79,18 +82,25 @@ class Run_App(Client):
                 self.send(relay, thread_id=thread_id, thread_type=thread_type)
                 # Gửi mail
                 send_mail = SendMail
-                email_from = 'Gmail botchat gửi tin nhắn'
-                password = 'Password gmail do google cấp'
-                email_to = 'Gmail nhận tin nhắn của botchat'
-                send_mail.Send(email_from, password, email_to, user.name, message)
-
-                message_relay = """
-                Bot: Thư đã được gửi đến Peter.
-                Đừng đi đâu hết!
-                Peter sẽ trả lời bạn ngay ~~
-                """
-                relay = Message(text = message_relay)
-                self.send(relay, thread_id=thread_id, thread_type=thread_type)
+                email_from = 'dinhtruong018@gmail.com'
+                password = 'XXX'
+                email_to = 'XXX@gmail.com'
+                try:
+                    send_mail.Send(email_from, password, email_to, user.name, message)
+                    message_relay = """
+                    Bot: Thư đã được gửi đến Peter.
+                    Đừng đi đâu hết!
+                    Peter sẽ trả lời bạn ngay ~~
+                    """
+                    relay = Message(text = message_relay)
+                    self.send(relay, thread_id=thread_id, thread_type=thread_type)
+                except:
+                    message_relay = """
+                    Bot: Có lỗi khi gửi mail!
+                    Xin lỗi!
+                    """
+                    relay = Message(text = message_relay)
+                    self.send(relay, thread_id=thread_id, thread_type=thread_type)
 
 if __name__ == '__main__':
     username = input("Username: ")
